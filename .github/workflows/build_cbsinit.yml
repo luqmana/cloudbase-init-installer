@@ -1,0 +1,29 @@
+name: Cloudbase-Init build MSI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-2016
+    strategy:
+      max-parallel: 100
+      matrix:
+        cbsinit_repo: ['https://github.com/ader1990/cloudbase-init-1']
+        cbsinit_branch: ['bp/nocloud-metadata-support']
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build msi
+      shell: cmd
+      run: |
+        powershell.exe .\BuildAutomation\BuildCloudbaseInitSetup.ps1^
+            -ClonePullInstallerRepo:$false -CreateZip:$false ^
+            -SetVCEnvVars:$false -RelativePythonDirPath^
+            -CloudbaseInitRepoUrl ${{ matrix.cbsinit_repo }} -CloudbaseInitRepoBranch ${{ matrix.cbsinit_branch }}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: CloudbaseInit x64 MSI
+        path: 'CloudbaseInitSetup/bin/Release/x64'

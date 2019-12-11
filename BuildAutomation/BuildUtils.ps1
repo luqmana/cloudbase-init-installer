@@ -27,7 +27,7 @@ function GitClonePull($path, $url, $branch="master")
 
     if (!(Test-Path -path $path))
     {
-        git clone -b $branch $url
+        git clone -b $branch $url $path
         if ($LastExitCode) { throw "git clone failed" }
         $needspull = $false
     }
@@ -203,6 +203,16 @@ function ReplaceVSToolSet($toolset)
         $vcxprojfile = $_.FullName
         (Get-Content $vcxprojfile) |
         Foreach-Object {$_ -replace "<PlatformToolset>[^<]+</PlatformToolset>", "<PlatformToolset>$toolset</PlatformToolset>"} |
+        Set-Content $vcxprojfile
+    }
+}
+
+function Replace-WixToolSet($toolset) {
+    Get-ChildItem -Filter *.vcxproj -Recurse |
+    Foreach-Object {
+        $vcxprojfile = $_.FullName
+        (Get-Content $vcxprojfile) |
+        Foreach-Object {$_ -replace '\$\(WIX\)sdk\\[^<]+\\', ('$(WIX)sdk\{0}\' -f $toolset)} |
         Set-Content $vcxprojfile
     }
 }
