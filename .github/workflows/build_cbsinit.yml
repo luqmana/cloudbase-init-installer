@@ -10,7 +10,7 @@ jobs:
       max-parallel: 100
       matrix:
         cbsinit_repo: ['https://github.com/ader1990/cloudbase-init-1']
-        cbsinit_branch: ['exscl_09022021']
+        cbsinit_branch: ['config-drive-hyphenated']
 
     steps:
     - uses: actions/checkout@v1
@@ -25,5 +25,5 @@ jobs:
             -CloudbaseInitRepoUrl ${{ matrix.cbsinit_repo }} -CloudbaseInitRepoBranch ${{ matrix.cbsinit_branch }}
     - uses: actions/upload-artifact@v1
       with:
-        name: CloudbaseInit x64 MSI
+        name: "CloudbaseInit_x64_MSI_${{ matrix.cbsinit_branch }}"
         path: 'CloudbaseInitSetup/bin/Release/x64'
