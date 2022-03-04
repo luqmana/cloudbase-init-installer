@@ -22,9 +22,6 @@ $ErrorActionPreference = "Stop"
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 . "$scriptPath\BuildUtils.ps1"
 
-ls "C:\Program Files (x86)\"
-ls "C:\Program Files (x86)\Microsoft Visual Studio\"
-
 SetVCVars "2017" "x86_amd64"
 
 
@@ -173,24 +170,13 @@ try
     }
 
     cd $cloudbaseInitInstallerDir
-
-    echo "before log1"
-    Write-Output "before log1"
-    Write-Host "before log1"
-    Copy-Item -Recurse -Force "C:\Python_CloudbaseInit" "D:\a\cloudbase-init-installer-1\cloudbase-init-installer-1\BuildAutomation\"
-    ls "D:\a\cloudbase-init-installer-1\cloudbase-init-installer-1\BuildAutomation"
     
     & msbuild.exe CloudbaseInitSetup.sln /m /p:Platform=$platform /p:Configuration=`"Release`"  /p:DefineConstants=`"PythonSourcePath=$python_dir`;CarbonSourcePath=Carbon`;Version=$msi_version`;VersionStr=$version`"
     if ($LastExitCode) { throw "MSBuild failed" }
 
     $msi_path = join-path $cloudbaseInitInstallerDir "CloudbaseInitSetup\bin\Release\$platform\CloudbaseInitSetup.msi"
     $msi_path_pdb_path = join-path $cloudbaseInitInstallerDir "CloudbaseInitSetup\bin\Release\$platform\CloudbaseInitSetup.wixpdb"
-    ls "./"
-    ls "./CloudbaseInitSetup"
-    ls "./CloudbaseInitSetup/bin"
-    ls "./CloudbaseInitSetup/bin/release"
-    ls "./CloudbaseInitSetup/bin/release/x64"
-    ls "D:\"
+
     Write-Host ("Cloudbaseinit MSI path is ${0}" -f $msi_path)
     Remove-Item -Path $msi_path_pdb_path -Force -ErrorAction SilentlyContinue
 
