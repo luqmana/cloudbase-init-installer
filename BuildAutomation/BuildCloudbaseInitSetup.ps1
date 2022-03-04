@@ -185,6 +185,12 @@ try
 
     $msi_path = join-path $cloudbaseInitInstallerDir "CloudbaseInitSetup\bin\Release\$platform\CloudbaseInitSetup.msi"
     $msi_path_pdb_path = join-path $cloudbaseInitInstallerDir "CloudbaseInitSetup\bin\Release\$platform\CloudbaseInitSetup.wixpdb"
+    ls "./"
+    ls "./CloudbaseInitSetup"
+    ls "./CloudbaseInitSetup/bin"
+    ls "./CloudbaseInitSetup/bin/release"
+    ls "./CloudbaseInitSetup/bin/release"
+    ls "D:\"
     Write-Host ("Cloudbaseinit MSI path is ${0}" -f $msi_path)
     Remove-Item -Path $msi_path_pdb_path -Force -ErrorAction SilentlyContinue
 
