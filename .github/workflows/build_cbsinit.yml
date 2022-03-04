@@ -16,10 +16,13 @@ jobs:
     - uses: actions/checkout@v1
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
-    - name: Build msi
+    - name: see current dir
       shell: cmd
       run: 
         dir
+    - name: Build msi
+      shell: cmd
+      run: 
         powershell.exe .\BuildAutomation\BuildCloudbaseInitSetup.ps1^
             -ClonePullInstallerRepo:$false -CreateZip:$false ^ 
             -SetVCEnvVars:$true -RelativePythonDirPath:$true ^
