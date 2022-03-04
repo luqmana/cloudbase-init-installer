@@ -13,7 +13,7 @@ Param(
   [switch]$CreateZip=$true,
   [switch]$SetVCEnvVars=$true,
   [switch]$RelativePythonDirPath,
-  [string]$VSPlatformToolSet="v142",
+  [string]$VSPlatformToolSet="v141",
   [string]$WixPlatformToolSet="VS2019"
 )
 
@@ -25,13 +25,13 @@ $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 ls "C:\Program Files (x86)\"
 ls "C:\Program Files (x86)\Microsoft Visual Studio\"
 
-SetVCVars "2019" "x86_amd64"
+SetVCVars "2017" "x86_amd64"
 
 
 # Use v140 with GitHub workflows env
 ReplaceVSToolSet $VSPlatformToolSet
 # Use VS2015 with GitHub workflows env
-Replace-WixToolSet $WixPlatformToolSet
+#Replace-WixToolSet $WixPlatformToolSet
 
 # Needed for SSH
 $ENV:HOME = $ENV:USERPROFILE
