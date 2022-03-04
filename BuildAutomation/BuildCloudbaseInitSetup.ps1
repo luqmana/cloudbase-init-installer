@@ -173,9 +173,13 @@ try
     }
 
     cd $cloudbaseInitInstallerDir
-    ls "D:\a\cloudbase-init-installer-1\cloudbase-init-installer-1\BuildAutomation"
-    ls "${python_dir}"
+
+    echo "before log1"
+    Write-Output "before log1"
+    Write-Host "before log1"
     mv "C:\Python_CloudbaseInit" "D:\a\cloudbase-init-installer-1\cloudbase-init-installer-1\BuildAutomation\"
+    ls "D:\a\cloudbase-init-installer-1\cloudbase-init-installer-1\BuildAutomation"
+    
     & msbuild.exe CloudbaseInitSetup.sln /m /p:Platform=$platform /p:Configuration=`"Release`"  /p:DefineConstants=`"PythonSourcePath=$python_dir`;CarbonSourcePath=Carbon`;Version=$msi_version`;VersionStr=$version`"
     if ($LastExitCode) { throw "MSBuild failed" }
 
