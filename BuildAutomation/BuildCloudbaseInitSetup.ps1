@@ -13,7 +13,7 @@ Param(
   [switch]$CreateZip=$true,
   [switch]$SetVCEnvVars=$true,
   [switch]$RelativePythonDirPath,
-  [string]$VSPlatformToolSet="v120_xp",
+  [string]$VSPlatformToolSet="v140",
   [string]$WixPlatformToolSet="VS2013"
 )
 
@@ -27,9 +27,9 @@ if ($SetVCEnvVars) {
 }
 
 # Use v140 with GitHub workflows env
-#ReplaceVSToolSet $VSPlatformToolSet
+ReplaceVSToolSet $VSPlatformToolSet
 # Use VS2015 with GitHub workflows env
-#Replace-WixToolSet $WixPlatformToolSet
+Replace-WixToolSet $WixPlatformToolSet
 
 # Needed for SSH
 $ENV:HOME = $ENV:USERPROFILE
