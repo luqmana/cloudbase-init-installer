@@ -20,7 +20,7 @@ jobs:
       shell: cmd
       run: |
         powershell.exe .\BuildAutomation\BuildCloudbaseInitSetup.ps1^
-            -ClonePullInstallerRepo:$false -CreateZip:$false ^
+            -ClonePullInstallerRepo:$false -CreateZip:$false ^ 
             -SetVCEnvVars:$false -RelativePythonDirPath^
             -CloudbaseInitRepoUrl ${{ matrix.cbsinit_repo }} -CloudbaseInitRepoBranch ${{ matrix.cbsinit_branch }}
     - uses: actions/upload-artifact@v1
