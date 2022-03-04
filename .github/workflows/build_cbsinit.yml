@@ -16,10 +16,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
-    - name: see current dir
-      shell: cmd
-      run: 
-        dir
     - name: Build msi
       shell: cmd
       run: 
@@ -30,4 +26,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: "CloudbaseInit_x64_MSI_${{ matrix.cbsinit_branch }}"
-        path: 'cloudbase-init-installer-1/CloudbaseInitSetup/bin/release/x64'
+        path: 'CloudbaseInitSetup/bin/release/x64/CloudbaseInitSetup.msi'
