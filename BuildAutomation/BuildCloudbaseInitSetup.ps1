@@ -189,7 +189,7 @@ try
     ls "./CloudbaseInitSetup"
     ls "./CloudbaseInitSetup/bin"
     ls "./CloudbaseInitSetup/bin/release"
-    ls "./CloudbaseInitSetup/bin/release"
+    ls "./CloudbaseInitSetup/bin/release/x64"
     ls "D:\"
     Write-Host ("Cloudbaseinit MSI path is ${0}" -f $msi_path)
     Remove-Item -Path $msi_path_pdb_path -Force -ErrorAction SilentlyContinue
