@@ -22,9 +22,8 @@ $ErrorActionPreference = "Stop"
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 . "$scriptPath\BuildUtils.ps1"
 
-if ($SetVCEnvVars) {
-    SetVCVars
-}
+SetVCVars "2017" "x86_amd64"
+
 
 # Use v140 with GitHub workflows env
 ReplaceVSToolSet $VSPlatformToolSet
