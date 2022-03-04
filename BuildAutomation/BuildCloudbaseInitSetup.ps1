@@ -13,7 +13,7 @@ Param(
   [switch]$CreateZip=$true,
   [switch]$SetVCEnvVars=$true,
   [switch]$RelativePythonDirPath,
-  [string]$VSPlatformToolSet="v140",
+  [string]$VSPlatformToolSet="v141",
   [string]$WixPlatformToolSet="VS2013"
 )
 
