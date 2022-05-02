@@ -22,7 +22,7 @@ $ErrorActionPreference = "Stop"
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 . "$scriptPath\BuildUtils.ps1"
 
-SetVCVars "2017" "x86_amd64"
+SetVCVars "2019" "x86_amd64"
 
 
 # Use v140 with GitHub workflows env
